@@ -1,6 +1,6 @@
 # php-log
 
-This librairy provides utilities function for simple file logging
+This librairy provides utilities function for simple file logging support.
 
 [![Build Status](https://travis-ci.org/hugsbrugs/php-log.svg?branch=master)](https://travis-ci.org/hugsbrugs/php-log)
 [![Coverage Status](https://coveralls.io/repos/github/hugsbrugs/php-log/badge.svg?branch=master)](https://coveralls.io/github/hugsbrugs/php-log?branch=master)
@@ -34,9 +34,9 @@ $log_message = Log::decode_log_level($error_code);
 ## Unit Tests
 
 ```
-composer exec phpunit
+phpunit --bootstrap vendor/autoload.php tests
 ```
 
 ## Author
 
-Hugo Maugey [website](https://hugo.maugey.fr)
+Hugo Maugey [visit my website ;)](https://hugo.maugey.fr)

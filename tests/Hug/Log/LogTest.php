@@ -28,17 +28,11 @@ final class LogTest extends TestCase
     /**
      *
      */
-    function __construct()
+    function setUp(): void
     {
         $this->valid_log_level_codes = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32767];
         $this->invalid_log_level_codes = [7, 14];
-    }
 
-    /**
-     * set up test environmemt
-     */
-    public function setUp()
-    {
         # Create Virtual File System
         $this->root = vfsStream::setup('exampleDir', 0755);
 
@@ -72,10 +66,10 @@ final class LogTest extends TestCase
         $message = 'Hello world ! ';
         $logfile = vfsStream::url('exampleDir/test.log');
         $result = Log::write_log($message, $logfile);
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
 
         $file_content = file_get_contents($logfile);
-        $this->assertContains($message, $file_content);        
+        $this->assertStringContainsString($message, $file_content);        
     }
 
     /**
@@ -86,7 +80,7 @@ final class LogTest extends TestCase
         $message = 'Hello world ! ';
         $logfile = vfsStream::url('fakeExampleDir/test.log');
         $result = Log::write_log($message, $logfile);
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
 
         // $file_content = file_get_contents($logfile);
         // $this->assertNotContains($message, $file_content);        
@@ -105,7 +99,7 @@ final class LogTest extends TestCase
         foreach ($this->valid_log_level_codes as $key => $log_level_code)
         {
             $log_message = Log::decode_log_level($log_level_code);
-            $this->assertInternalType('string', $log_message);
+            $this->assertIsString($log_message);
         }
     }
     
